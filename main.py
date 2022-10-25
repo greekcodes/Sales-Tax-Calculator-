@@ -11,8 +11,7 @@ def set_tax_rate():
               "OR":0.00
               
              
-             
-             }
+              }
   tax_rate = tax_dict[state]
   return tax_rate
 # We need price of an item
@@ -23,8 +22,18 @@ def get_item():
   price = float(input("What is the price of your item?"))
   return item_name, price
 
-  def calculate_tax(price, tax_rate):
-    sales_tax = price * tax_rate 
-    total = price + sales_tax
-    return sales_tax, total
-  
+def calculate_tax(price, tax_rate):
+  sales_tax = price * tax_rate 
+  total = price + sales_tax
+  return total, sales_tax
+
+def receipt():
+  print(f"You purchased {item_name}")
+  print(f"The price of your item is $ {price}")
+  print(f"You paid ${sales_tax: .2f} in sales tax")
+  print(f"The total cost is {total: .2f}")
+
+item_name, price = get_item()
+tax_rate = set_tax_rate()
+total, sales_tax = calculate_tax(price, tax_rate) 
+receipt()
